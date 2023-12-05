@@ -3,6 +3,8 @@ package com.example.runner_ensea;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
+import javafx.animation.AnimationTimer;
+
 
 
 public class GameScene extends Scene {
@@ -11,6 +13,8 @@ public class GameScene extends Scene {
     private StaticThing backgroundRight;
     private int numberOfLives;
     private Heart[] hearts;
+    private Hero hero;
+
 
     public GameScene(Camera camera) {
         super(new Group());
@@ -40,6 +44,13 @@ public class GameScene extends Scene {
         Pane root = (Pane) getRoot();
         root.getChildren().addAll(backgroundLeft.getImageView(), backgroundRight.getImageView());
 
+        // Instantiate and display the Hero
+        hero = new Hero(200, 300); // We can adjust the starting position as needed
+        root.getChildren().add(hero.getImageView());
+
+        // Start the AnimationTimer
+        startTimer();
+
         render();
 
     }
@@ -59,5 +70,24 @@ public class GameScene extends Scene {
             hearts[i].getImageView().setLayoutY(10);
         }
 
+        // Update Hero position based on camera and other logic
+        hero.getImageView().setLayoutX(hero.getX() - cameraX);
+        hero.getImageView().setLayoutY(hero.getY() - cameraY);
+    }
+
+    private void startTimer() {
+        AnimationTimer timer = new AnimationTimer() {
+            public void handle(long time) {
+                hero.update(time);
+                camera.update(time);
+                update(time);
+            }
+        };
+        timer.start();
+    }
+
+    public void update(long time) {
+        // Update logic for the animated thing
+        // You may add specific logic related to animation updates here
     }
 }

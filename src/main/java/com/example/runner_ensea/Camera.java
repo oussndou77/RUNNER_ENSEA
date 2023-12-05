@@ -27,5 +27,10 @@ public class Camera {
     public String toString() {
         return "Camera [x=" + x + ", y=" + y + "]";
     }
+
+    public void update(long time) {
+        // Update logic for the animated thing
+        // You may add specific logic related to animation updates here
+    }
 }
 

@@ -11,9 +11,9 @@ import javafx.scene.Scene;
 
 public class RunAppli extends Application {
 
-
-    private ImageView sprite;
 /*
+    private ImageView sprite;
+
     @Override
     public void start(Stage primaryStage) {
         Image spriteSheet = new Image("C:\\Users\\User\\Desktop\\Bureau\\2A ENSEA\\Cours\\JAVA\\TDs Project\\Ressources\\Ressources audio et image pour le runner-20231108\\img\\desert.png");
@@ -44,7 +44,7 @@ public class RunAppli extends Application {
 
         GameScene gameScene = new GameScene(camera, backgroundLeft, backgroundRight, 3);
         primaryStage.setScene(gameScene);
-        primaryStage.setTitle("Game Example");
+        primaryStage.setTitle("Runner ENSEA");
         primaryStage.show();
 
         System.out.println( gameScene.getGameCamera());
