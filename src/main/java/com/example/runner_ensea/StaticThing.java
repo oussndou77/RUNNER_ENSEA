@@ -9,6 +9,7 @@
 //every position on the Scene according to the camera.
 //• Test your code with different value for the camera’s position.
 package com.example.runner_ensea;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -30,7 +31,19 @@ public class StaticThing {
     public double getSizeX() {
         return sizeX;
     }
+    public double getSizeY() {
+        return sizeY;
+    }
+
+    public void setSizeX(double sizeX) {
+        this.sizeX = sizeX;
+    }
+    public void setSizeY(double sizeY) {
+        this.sizeY = sizeY;
+    }
+
     public ImageView getImageView() {
         return imageView;
     }
 }
+

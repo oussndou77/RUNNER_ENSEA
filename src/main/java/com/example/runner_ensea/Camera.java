@@ -1,36 +1,67 @@
 package com.example.runner_ensea;
+import javafx.animation.AnimationTimer;
+import com.example.runner_ensea.Hero;
 
-// Create ”Camera” class.
 
 public class Camera {
-    //• This very basic class (at first) is just two sets of coordinates (x and y), with getter
-//methods.
-//• The constructor of this class takes two Integer arguments.
-//• Overload the ”toString” method to display x and y comma separated.
-    private int x ;
-    private int y ;
-    // Getter methods.
-    public int getX() {
+    private Hero hero;
+    private double x; // Camera position
+    private double vx; // Camera velocity
+    private double k = 0.2; // Spring constant
+    private double m = 1.0; // Mass
+    private double f = 0.5; // Damping factor
+
+    public Camera(Hero hero, double initialOffsetX, double initialOffsetY) {
+        this.hero = hero;
+        // Set initial position of the camera slightly off from the hero
+        this.x = hero.getX() + initialOffsetX;
+        this.vx = 0;
+
+        startTimer();
+    }
+
+    private void startTimer() {
+        AnimationTimer timer = new AnimationTimer() {
+            long lastTime = 0;
+
+            @Override
+            public void handle(long now) {
+                if (lastTime == 0) {
+                    lastTime = now;
+                    return;
+                }
+
+                long deltaTime = now - lastTime;
+                update(deltaTime / 1_000_000_000.0); // Convert nanoseconds to seconds
+                lastTime = now;
+            }
+        };
+        timer.start();
+    }
+
+    public void update(double deltaTime) {
+        // Spring force equation
+        double ax = k / m * (hero.getX() - x) + f / m * vx;
+
+        // Update velocity and position
+        double deltaVx = ax * deltaTime;
+        vx += deltaVx;
+        double deltaX = vx * deltaTime;
+        x += deltaX;
+    }
+
+    public double getX() {
         return x;
     }
 
-    public int getY() {
-        return y;
+    public double getY() {
+        // Assuming the camera doesn't move vertically in this example
+        return 0;
     }
-    // Constructor
-    public Camera(int x, int y) {
+
+    public void setX(double x) {
         this.x = x;
-        this.y = y;
-    }
-    // toString method.
-    @Override
-    public String toString() {
-        return "Camera [x=" + x + ", y=" + y + "]";
     }
 
-    public void update(long time) {
-        // Update logic for the animated thing
-        // You may add specific logic related to animation updates here
-    }
+
 }
-

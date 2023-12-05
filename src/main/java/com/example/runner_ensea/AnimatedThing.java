@@ -32,7 +32,7 @@ public abstract class AnimatedThing {
 
         Image spriteSheet = new Image(fileName);
         imageView = new ImageView(spriteSheet);
-        imageView.setViewport(new Rectangle2D(75, 100, windowSize, windowSize));
+        imageView.setViewport(new Rectangle2D(x, 0, windowSize, windowSize));
 
         currentIndex = 0;
 
@@ -73,9 +73,20 @@ public abstract class AnimatedThing {
         return y;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public void update(long time) {
-        // Update logic for the animated thing
-        // You may add specific logic related to animation updates here
+        double elapsedSeconds = time / 1_000_000_000.0; // Convert nanoseconds to seconds
+        double speed = 100.0; // Adjust the speed as needed
+
+        double deltaX = speed * elapsedSeconds;
+        setX(getX() + deltaX);
     }
 
 
