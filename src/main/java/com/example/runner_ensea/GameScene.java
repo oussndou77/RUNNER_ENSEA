@@ -84,11 +84,11 @@ public class GameScene extends Scene {
         backgroundRight.getImageView().setLayoutX(cameraX + backgroundLeft.getSizeX());
         backgroundRight.getImageView().setLayoutY(cameraY);
 
-        // Update heart positions based on camera or any other logic
+       /* // Update heart positions based on camera or any other logic
         for (int i = 0; i < numberOfLives; i++) {
             hearts[i].getImageView().setLayoutX(10 + i * 25); // Adjust the positions accordingly
             hearts[i].getImageView().setLayoutY(10);
-        }
+        }*/
 
         // Update Hero position based on camera and other logic
         hero.getImageView().setLayoutX(hero.getX() - cameraX);
@@ -107,7 +107,7 @@ public class GameScene extends Scene {
     }
 
     public void update(long time) {
-        // Update logic for the animated thing
-        // You may add specific logic related to animation updates here
+
+
     }
 }

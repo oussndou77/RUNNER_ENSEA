@@ -32,14 +32,14 @@ public abstract class AnimatedThing {
 
         Image spriteSheet = new Image(fileName);
         imageView = new ImageView(spriteSheet);
-        imageView.setViewport(new Rectangle2D(x, 0, windowSize, windowSize));
+        imageView.setViewport(new Rectangle2D(75, 100, windowSize, windowSize));
 
         currentIndex = 0;
 
 
         animation = new Timeline(
                 new KeyFrame(frameDuration, event -> {
-                    currentIndex = (currentIndex + 1) % maxIndex;
+                    currentIndex = (currentIndex +2) % maxIndex;
                     updateViewport();
                 })
         );
@@ -83,10 +83,15 @@ public abstract class AnimatedThing {
 
     public void update(long time) {
         double elapsedSeconds = time / 1_000_000_000.0; // Convert nanoseconds to seconds
-        double speed = 100.0; // Adjust the speed as needed
+        double speed = 100.0;
 
         double deltaX = speed * elapsedSeconds;
         setX(getX() + deltaX);
+
+        // S'assurez-vous que le héros ne recule pas en ajustant la valeur de X
+        if (getX() < 0) {
+            setX(0);
+        }
     }
 
 

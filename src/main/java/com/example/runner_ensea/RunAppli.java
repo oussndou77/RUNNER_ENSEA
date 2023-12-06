@@ -39,9 +39,9 @@ public class RunAppli extends Application {
         String background_right = "C:\\Users\\User\\Desktop\\Bureau\\2A ENSEA\\Cours\\JAVA\\TDs Project\\Ressources\\Ressources audio et image pour le runner-20231108\\img\\desert.png";
 
         Hero hero = new Hero(130, 500); // Create a Hero object
-        Camera camera = new Camera(hero, 20, 30); // Pass the Hero object to the Camera constructor
-        StaticThing backgroundLeft = new StaticThing(800, 700, background_left);
-        StaticThing backgroundRight = new StaticThing(800, 700, background_right);
+        Camera camera = new Camera(hero, 50, 50); // Pass the Hero object to the Camera constructor
+        StaticThing backgroundLeft = new StaticThing(900, 700, background_left);
+        StaticThing backgroundRight = new StaticThing(900, 700, background_right);
 
         GameScene gameScene = new GameScene(camera, backgroundLeft, backgroundRight, 3);
         primaryStage.setScene(gameScene);

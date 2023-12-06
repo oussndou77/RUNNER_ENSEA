@@ -7,16 +7,20 @@ public class Hero extends AnimatedThing {
 
     private double velocityY;
     private static final double GRAVITY = 300.0;
-    private static final double JUMP_FORCE = 150.0;
+    private static final double JUMP_FORCE = -150.0;
 
     public Hero(double x, double y) {
-        super(x, y, 0, "C:\\Users\\User\\Desktop\\Bureau\\2A ENSEA\\Cours\\JAVA\\TDs Project\\Ressources\\Ressources audio et image pour le runner-20231108\\img\\heros.png", 8, Duration.millis(100), 100, 100);
+        super(x, y, 0, "C:\\Users\\User\\Desktop\\Bureau\\2A ENSEA\\Cours\\JAVA\\TDs Project\\Ressources\\Ressources audio et image pour le runner-20231108\\img\\heros.png", 8, Duration.millis(100), 100, 0);
         velocityY = 0;
     }
 
+    public boolean isOnRoad() {
+        return getY() >= 150;
+    }
     public void jump() {
         // Only allow jumping when the hero is on the road (y >= 150)
-        if (getY() >= 150) {
+        if (isOnRoad()) {
+            System.out.println("Jason is on road");
             velocityY = JUMP_FORCE;
         }
     }
@@ -31,7 +35,7 @@ public class Hero extends AnimatedThing {
         // Update position
         setY(getY() + velocityY * (time / 1_000_000_000.0));
 
-        // Ensure the hero stays above the road
+        // To be sure that the hero stays above the road
         if (getY() < 150) {
             setY(150);
             velocityY = 0;
